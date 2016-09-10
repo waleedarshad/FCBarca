@@ -17,9 +17,16 @@ import {
   View
 } from 'react-native';
 
+import Swiper from 'react-native-scrollable-tab-view'
+import EachArt from './widgets/eachArticle'
+import NextGame from './widgets/nextGame'
+
 var {height, width} = Dimensions.get('window');
 
 export default class Home extends Component {
+  eachArticle(){
+  }
+
   render() {
     return (
       <Image source={require('../images/barca.png')} resizeMode='stretch' style={styles.container}>
@@ -34,17 +41,11 @@ export default class Home extends Component {
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>SHOP</Text></TouchableOpacity>
       </View>
       <View style={styles.news}>
-      <View style={{flex:1}}>
-      <Text style={{marginLeft:30, width:200, fontSize:38, lineHeight:38,  fontWeight:'900', color:'#d9991d',}}>
-      PRESS STUNNED
-      </Text>
-       <Text style={{marginLeft:30, fontSize:38, lineHeight:38, fontWeight:'900', color:'#fff',}}>
-      BY BARCA
-      </Text>
-      <Text style={{marginLeft:30, fontSize:12, color:'#fff',}}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper hendrerit augue, et vestibulum leo consectetur vitae. Duis a lorem ac quam scelerisque malesuada. Praesent vitae elit sit amet sapien venenatis egestas.
-      </Text>
-      </View>
+      <Swiper style={{margin:10}} tabBarPosition="bottom" tabBarUnderlineStyle={{backgroundColor:"#d9991d"}}>
+      <EachArt tabLabel="" />
+      <NextGame tabLabel="  " />
+      <EachArt tabLabel="   " />
+      </Swiper>
       </View>
       </Image>
       </Image>
@@ -59,10 +60,11 @@ const styles = StyleSheet.create({
     height:null
 },
 news:{
-  flex:1
+  flex:3
 },
 menu:{
-  flex:1
+  flex:4,
+  justifyContent:'center'
 }
 }
 );
