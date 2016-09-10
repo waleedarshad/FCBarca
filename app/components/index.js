@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import Home from './home'
+import News from './news'
 
 
 export default class Index extends Component {
@@ -28,7 +29,14 @@ export default class Index extends Component {
         {...this.props} 
         navigator={navigator} />
         );
-    }  
+    }
+    if (routeId === 'news') {
+      return (
+        <News
+        {...this.props} 
+        navigator={navigator} />
+        );
+    }    
    }
 
 
@@ -38,7 +46,7 @@ export default class Index extends Component {
      <Navigator
      style={{flex: 1}}
      ref={'NAV'}
-     initialRoute={{id: 'home', name: 'home'}}
+     initialRoute={{id: 'news', name: 'news'}}
      renderScene={this.renderScene.bind(this)}/>
         </View>
     )
