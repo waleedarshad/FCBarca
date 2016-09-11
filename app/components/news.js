@@ -7,11 +7,13 @@
 import React, { Component } from 'react';
 import Nav from './widgets/nav';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+// Ideally this would be a parallax view
+import Parallax from 'react-native-parallax-view'
 
 import {
   AppRegistry,
   StyleSheet,
+  ScrollView,
   Text,
   Image,
   Dimensions,
@@ -25,12 +27,18 @@ import NextGame from './widgets/nextGame'
 
 var {height, width} = Dimensions.get('window');
 
-export default class News extends Component {
+var data = [
+{
+  type:"box1"
+  image: image1,
+  text: ""
+}
+]
 
-  render() {
-    return (
-      <Image source={require('../images/locker.png')} resizeMode='stretch' style={styles.container}>
-      <Image source={require('../images/overlay.png')} resizeMode='stretch' style={styles.container}>
+export default class News extends Component {
+  navVew(){
+    return(
+    <View>
       <Nav name='NEWS' />
       <View style={styles.menu}>
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
@@ -53,9 +61,32 @@ export default class News extends Component {
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TICKETS</Text></TouchableOpacity>
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>SHOP</Text></TouchableOpacity>
       </View>
+      </View>
       
+      )
+  }
+  eachCalendar(){
+    //Most Epic Calendar ever
+    return()
+  }
+  calendar(){
+    return(
+      <ListView
+      dataSource = {this.state.dataSource}
+      horizontal = {true}
+      renderRow = {(rowData) => this.eachCalendar(rowData)}
+      />
+      )
+  }
+  render() {
+    return (
+     
+      <Image source={require('../images/locker.png')} resizeMode='stretch' style={styles.container}>
+      <Image source={require('../images/overlay.png')} resizeMode='stretch' style={styles.container}>
+      {this.calendar()}
       </Image>
       </Image>
+
     );
   }
 }
