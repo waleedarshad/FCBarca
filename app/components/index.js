@@ -11,6 +11,7 @@ import {
 
 import Home from './home'
 import News from './news'
+import Players from './players'
 
 
 export default class Index extends Component {
@@ -36,6 +37,12 @@ export default class Index extends Component {
         {...this.props} 
         navigator={navigator} />
         );
+    }if (routeId === 'players') {
+      return (
+        <Players
+        {...this.props} 
+        navigator={navigator} />
+        );
     }    
    }
 
@@ -46,7 +53,7 @@ export default class Index extends Component {
      <Navigator
      style={{flex: 1}}
      ref={'NAV'}
-     initialRoute={{id: 'news', name: 'news'}}
+     initialRoute={{id: 'players', name: 'players'}}
      renderScene={this.renderScene.bind(this)}/>
         </View>
     )

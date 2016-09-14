@@ -227,7 +227,7 @@ export default class News extends Component {
 
     if(x.type == "box2"){
         return(
-          <View style={{alignSelf:'flex-start', justifyContent:'space-between', padding:15, height:120,  width:120, backgroundColor:'#d9991d'}}>
+          <View style={{alignSelf:'flex-start', justifyContent:'space-between', padding:15, height:120,  width:120, backgroundColor:'#rgba(217,153,29,0.7)'}}>
           <Text numberOfLines={4} style={{color:'#fff', fontWeight:'800', fontSize:12}}>{x.text.toUpperCase()}</Text>
           </View>
           )}
@@ -251,7 +251,7 @@ export default class News extends Component {
           </View>
             )
         }else{
-          return(<View style={{ alignSelf:'flex-start', marginLeft:50, margin:5, height:90,  width:90, backgroundColor:'#464070'}}>
+          return(<View style={{ alignSelf:'flex-start', marginLeft:50, margin:5, height:90,  width:90, backgroundColor:'rgba(70,64,112,0.5)'}}>
           <View style={{flex:1, padding:10, justifyContent:'space-between'}}>
           <Icon name="donut-large" color='#fff' size={20} />
           <View>
@@ -266,7 +266,7 @@ export default class News extends Component {
   eachCalendar(x){
     //Most Epic Calendar ever
     return(
-      <View style={{height:400, width:width}}>
+      <View style={{height:650, width:width}}>
       <TouchableOpacity><Text style={{marginTop:260, transform:[{rotate:'90deg'}], color:'#d9991d', fontSize:45, fontWeight:'900'}}>{x.year}</Text></TouchableOpacity>
      <ListView
      style = {{flex:1, position:"absolute", top:0, left:10, width:width-20}}
