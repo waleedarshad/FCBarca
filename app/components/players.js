@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import Nav from './widgets/nav';
-
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
   AppRegistry,
@@ -236,7 +236,7 @@ export default class Home extends Component {
       <Image source={require('../images/overlay2.png')} resizeMode='stretch' style={styles.container}>
       <Nav name= {this.state.currentPlayer.name.toUpperCase()} />
       <View style={{flex:1, justifyContent:'center',}}>
-      <View style={{flexDirection:'row',width:300}}>
+        <View style={{flexDirection:'row',width:300, margin:5, marginLeft:-20}}>
       <View style={{flex:1, justifyContent:'center'}}>
       <Text style={{textAlign:'right',fontWeight:'800', fontSize:18, color:'#fff', alignSelf:'flex-end'}}>GAMES</Text>
       <View style={{flexDirection:'row', alignSelf:'flex-end', margin:5,}}>
@@ -244,10 +244,54 @@ export default class Home extends Component {
       <Text style={{textAlign:'right', color:"#999", fontSize:12,fontWeight:'600',}}> {this.state.currentPlayer.highlight1.val.toUpperCase()}</Text>
       </View>
       </View>
-      <View style={{ alignItems:'center', justifyContent:'center', width:70, height:70, borderRadius:35, borderColor:'#494577', borderWidth:3, backgroundColor:'rgba(0,0,0,0.2)'}}>
+      <View style={{ alignItems:'center', justifyContent:'center', width:70, height:70, borderRadius:35, borderColor:'#494577', margin:5, borderWidth:3, backgroundColor:'rgba(0,0,0,0.2)'}}>
       <Text style={{color:'#fff', fontSize:28, fontWeight:'700'}}>{this.state.currentPlayer.games}</Text>
       </View>
+        </View>
+        <View style={{flexDirection:'row',width:300, margin:5}}>
+      <View style={{flex:1, justifyContent:'center'}}>
+      <Text style={{textAlign:'right',fontWeight:'800', fontSize:18, color:'#fff', alignSelf:'flex-end'}}>GOALS</Text>
+      <View style={{flexDirection:'row', alignSelf:'flex-end', margin:5,}}>
+      <Text style={{color:'#ffb240',textAlign:'right', fontWeight:'700', fontSize:12}}>{this.state.currentPlayer.highlight2.stat}</Text>
+      <Text style={{textAlign:'right', color:"#999", fontSize:12,fontWeight:'600',}}> {this.state.currentPlayer.highlight2.val.toUpperCase()}</Text>
       </View>
+      </View>
+      <View style={{ alignItems:'center', justifyContent:'center', width:70, height:70, borderRadius:35, borderColor:'#d9991d', margin:5, borderWidth:3, backgroundColor:'rgba(217,153,29,0.4)'}}>
+      <Text style={{color:'#fff', fontSize:28, fontWeight:'700'}}>{this.state.currentPlayer.goals}</Text>
+      </View>
+        </View>
+        <View style={{flexDirection:'row',width:300, margin:5, marginLeft:-30}}>
+      <View style={{flex:1, justifyContent:'center'}}>
+      <Text style={{textAlign:'right',fontWeight:'800', fontSize:18, color:'#fff', alignSelf:'flex-end'}}>ASSIST</Text>
+      <View style={{flexDirection:'row', alignSelf:'flex-end', margin:5,}}>
+      <Text style={{color:'#ffb240',textAlign:'right', fontWeight:'700', fontSize:12}}>{this.state.currentPlayer.highlight3.stat}</Text>
+      <Text style={{textAlign:'right', color:"#999", fontSize:12,fontWeight:'600',}}> {this.state.currentPlayer.highlight3.val.toUpperCase()}</Text>
+      </View>
+      </View>
+      <View style={{ alignItems:'center', justifyContent:'center', width:70, height:70, borderRadius:35, borderColor:'#494675', margin:5, borderWidth:3, backgroundColor:'rgba(73,70,117,0.6)'}}>
+      <Text style={{color:'#fff', fontSize:28, fontWeight:'700'}}>{this.state.currentPlayer.assist}</Text>
+      </View>
+        </View>
+        <View style={{flexDirection:'row',width:300, margin:5, marginLeft:-20}}>
+      <View style={{flex:1, justifyContent:'center'}}>
+      <Text style={{textAlign:'right',fontWeight:'800', fontSize:18, color:'#fff', alignSelf:'flex-end'}}>SHOTS</Text>
+      <View style={{flexDirection:'row', alignSelf:'flex-end', margin:5,}}>
+      <Text style={{color:'#ffb240',textAlign:'right', fontWeight:'700', fontSize:12}}>{this.state.currentPlayer.highlight4.stat}</Text>
+      <Text style={{textAlign:'right', color:"#999", fontSize:12,fontWeight:'600',}}> {this.state.currentPlayer.highlight4.val.toUpperCase()}</Text>
+      </View>
+      </View>
+      <View style={{ alignItems:'center', justifyContent:'center', width:70, height:70, borderRadius:35, borderColor:'#d9991d', margin:5, borderWidth:3, backgroundColor:'rgba(73,70,117,0.6)'}}>
+      <Text style={{color:'#fff', fontSize:28, fontWeight:'700'}}>{this.state.currentPlayer.shots}</Text>
+      </View>
+        </View>
+        <View style={styles.controls}>
+        <TouchableOpacity>
+        <Icon name = "navigate-before" size={20} color="#d9991d" style={{margin:10}} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+        <Icon name = "navigate-next" size={20} color="#d9991d" style={{margin:10}} />
+        </TouchableOpacity>
+        </View>
       </View>
       </Image>
       </Image>
@@ -261,6 +305,15 @@ const styles = StyleSheet.create({
     flex: 1,
     width:null,
     height:null
+},controls:{
+  position:'absolute',
+  height:50,
+  top:(height/2)-50,
+  flexDirection:'row',
+  justifyContent:'space-between',
+  alignItems:'center',
+  width:width,
+  backgroundColor:'rgba(0,0,0,0.2)'
 },
 news:{
   flex:3
