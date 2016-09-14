@@ -31,7 +31,7 @@ var players = [{
   name:'Leonel Messi',
   games: 23,
   goals: 22,
-  assist: 14,
+  assists: 14,
   shots: 65,
   image: messi,
   highlight1: {
@@ -69,6 +69,10 @@ var players = [{
   "highlight3": {
     "stat": "II",
     "val": "donec diam neque vestibulum"
+  },
+  "highlight4": {
+    "stat": "Jr",
+    "val": "nullam sit amet turpis elementum"
   }
 }, {
   "id": 2,
@@ -89,6 +93,10 @@ var players = [{
   "highlight3": {
     "stat": "IV",
     "val": "fusce consequat nulla nisl"
+  },
+  "highlight4": {
+    "stat": "Jr",
+    "val": "nullam sit amet turpis elementum"
   }
 }, {
   "id": 3,
@@ -109,6 +117,10 @@ var players = [{
   "highlight3": {
     "stat": "IV",
     "val": "libero nam dui proin leo"
+  },
+  "highlight4": {
+    "stat": "Jr",
+    "val": "nullam sit amet turpis elementum"
   }
 }, {
   "id": 4,
@@ -129,6 +141,10 @@ var players = [{
   "highlight3": {
     "stat": "II",
     "val": "in tempus sit amet"
+  },
+  "highlight4": {
+    "stat": "Jr",
+    "val": "nullam sit amet turpis elementum"
   }
 }, {
   "id": 5,
@@ -149,6 +165,10 @@ var players = [{
   "highlight3": {
     "stat": "III",
     "val": "luctus et ultrices posuere cubilia"
+  },
+  "highlight4": {
+    "stat": "Jr",
+    "val": "nullam sit amet turpis elementum"
   }
 }, {
   "id": 6,
@@ -169,6 +189,10 @@ var players = [{
   "highlight3": {
     "stat": "IV",
     "val": "ac nulla sed vel"
+  },
+  "highlight4": {
+    "stat": "Jr",
+    "val": "nullam sit amet turpis elementum"
   }
 }, {
   "id": 7,
@@ -189,6 +213,10 @@ var players = [{
   "highlight3": {
     "stat": "Sr",
     "val": "justo etiam pretium iaculis"
+  },
+  "highlight4": {
+    "stat": "Jr",
+    "val": "nullam sit amet turpis elementum"
   }
 }, {
   "id": 8,
@@ -209,8 +237,14 @@ var players = [{
   "highlight3": {
     "stat": "Jr",
     "val": "rhoncus mauris enim leo rhoncus"
+  },
+  "highlight4": {
+    "stat": "Jr",
+    "val": "nullam sit amet turpis elementum"
   }
 }]
+
+var i = 0
 
 import Swiper from 'react-native-scrollable-tab-view'
 import EachArt from './widgets/eachArticle'
@@ -223,11 +257,27 @@ export default class Home extends Component {
     super(props)
 
     this.state = {
-      currentPlayer : players[0]
+      currentPlayer : players[i]
     }
   }
   highlights(x){
 
+  }
+  next(){
+    if(i < 8){
+      i++;
+      this.setState({
+        currentPlayer : players[i]
+      })
+    }
+  }
+  prev(){
+    if(i > 0){
+      i--;
+      this.setState({
+        currentPlayer : players[i]
+      })
+    }
   }
   render() {
     return (
@@ -235,7 +285,7 @@ export default class Home extends Component {
             <Image source ={this.state.currentPlayer.image} resizeMode='stretch' style={styles.container}>
       <Image source={require('../images/overlay2.png')} resizeMode='stretch' style={styles.container}>
       <Nav name= {this.state.currentPlayer.name.toUpperCase()} />
-      <View style={{flex:1, justifyContent:'center',}}>
+      <View style={{flex:1, justifyContent:'center', marginLeft:60}}>
         <View style={{flexDirection:'row',width:300, margin:5, marginLeft:-20}}>
       <View style={{flex:1, justifyContent:'center'}}>
       <Text style={{textAlign:'right',fontWeight:'800', fontSize:18, color:'#fff', alignSelf:'flex-end'}}>GAMES</Text>
@@ -269,7 +319,7 @@ export default class Home extends Component {
       </View>
       </View>
       <View style={{ alignItems:'center', justifyContent:'center', width:70, height:70, borderRadius:35, borderColor:'#494675', margin:5, borderWidth:3, backgroundColor:'rgba(73,70,117,0.6)'}}>
-      <Text style={{color:'#fff', fontSize:28, fontWeight:'700'}}>{this.state.currentPlayer.assist}</Text>
+      <Text style={{color:'#fff', fontSize:28, fontWeight:'700'}}>{this.state.currentPlayer.assists}</Text>
       </View>
         </View>
         <View style={{flexDirection:'row',width:300, margin:5, marginLeft:-20}}>
@@ -280,16 +330,17 @@ export default class Home extends Component {
       <Text style={{textAlign:'right', color:"#999", fontSize:12,fontWeight:'600',}}> {this.state.currentPlayer.highlight4.val.toUpperCase()}</Text>
       </View>
       </View>
-      <View style={{ alignItems:'center', justifyContent:'center', width:70, height:70, borderRadius:35, borderColor:'#d9991d', margin:5, borderWidth:3, backgroundColor:'rgba(73,70,117,0.6)'}}>
+      <View style={{ alignItems:'center', justifyContent:'center', width:70, height:70, borderRadius:35, borderColor:'#494675', margin:5, borderWidth:3, backgroundColor:'rgba(0,0,0,0.3)'}}>
       <Text style={{color:'#fff', fontSize:28, fontWeight:'700'}}>{this.state.currentPlayer.shots}</Text>
       </View>
         </View>
         <View style={styles.controls}>
-        <TouchableOpacity>
-        <Icon name = "navigate-before" size={20} color="#d9991d" style={{margin:10}} />
+        <TouchableOpacity style={styles.circle}>
+        <Icon name = "navigate-before" onPress ={() => this.prev()} size={20} color="#d9991d" />
         </TouchableOpacity>
-        <TouchableOpacity>
-        <Icon name = "navigate-next" size={20} color="#d9991d" style={{margin:10}} />
+        <Text style={{fontSize:12, fontWeight:'600', color:'#fff'}}>PLAYER CARD</Text>
+        <TouchableOpacity style={styles.circle}>
+        <Icon name = "navigate-next" onPress ={() => this.next()} size={20} color="#d9991d"  />
         </TouchableOpacity>
         </View>
       </View>
@@ -312,8 +363,20 @@ const styles = StyleSheet.create({
   flexDirection:'row',
   justifyContent:'space-between',
   alignItems:'center',
+  left:-60,
   width:width,
   backgroundColor:'rgba(0,0,0,0.2)'
+},
+circle:{
+  width:30,
+  height:30,
+  alignItems:'center',
+  justifyContent:'center',
+  margin:5,
+  borderRadius:15,
+  borderWidth:1,
+  borderColor:'#d9991d',
+  backgroundColor:'rgba(217,153,29,0.2)'
 },
 news:{
   flex:3
