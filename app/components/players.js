@@ -265,7 +265,7 @@ export default class Home extends Component {
   }
   next(){
     if(i < 8){
-      i++;
+      i = i+1;
       this.setState({
         currentPlayer : players[i]
       })
@@ -273,7 +273,7 @@ export default class Home extends Component {
   }
   prev(){
     if(i > 0){
-      i--;
+      i = i-1;
       this.setState({
         currentPlayer : players[i]
       })
@@ -336,7 +336,7 @@ export default class Home extends Component {
         </View>
         <View style={styles.controls}>
         <TouchableOpacity style={styles.circle}>
-        <Icon name = "navigate-before" onPress ={() => this.prev()} size={20} color="#d9991d" />
+        <Icon name = "navigate-before" onPress = {() => this.prev()} size={20} color="#d9991d" />
         </TouchableOpacity>
         <Text style={{fontSize:12, fontWeight:'600', color:'#fff'}}>PLAYER CARD</Text>
         <TouchableOpacity style={styles.circle}>

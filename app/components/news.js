@@ -212,7 +212,7 @@ export default class News extends Component {
         <TouchableOpacity style={styles.subMenu}>
         <Icon name="chevron-right" size={17} color='#d3d3d3' />
         <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>FORMATIONS</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>FOOTBALL</Text></TouchableOpacity>
+      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TOUR & MUSEUM</Text></TouchableOpacity>
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TICKETS</Text></TouchableOpacity>
