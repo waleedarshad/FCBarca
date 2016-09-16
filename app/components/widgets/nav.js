@@ -20,7 +20,7 @@ export default class Nav extends Component {
   render() {
     return (
       <View style={{height:50, backgroundColor:'rgba(0,0,0,0.1)', alignItems:'center', flexDirection:'row'}}>
-      <TouchableOpacity style={styles.row}>
+      <TouchableOpacity onPress = {this.props.onPress} style={styles.row}>
       <Icon name = "more-vert" size={20} style={{margin:5, fontWeight:"600"}} color="#fff" />
       </TouchableOpacity>
       <Text style={{color:'#fff', fontSize:12, fontWeight:'800'}}>

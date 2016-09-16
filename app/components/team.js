@@ -14,6 +14,7 @@ import {
   AppRegistry,
   StyleSheet,
   ScrollView,
+  LayoutAnimation,
   ListView,
   Text,
   Image,
@@ -53,32 +54,46 @@ export default class News extends Component {
 
     this.state = {
       dataSource: ds.cloneWithRows(data),
+      displayNav: true
+
     }
+  }
+
+  onPress(){
+     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+    if(this.state.displayNav){
+        this.setState({
+         displayNav: false
+        })}else{
+          this.setState({
+         displayNav: true
+        })
+        }
   }
 
   overlay(){
     return(
       <View style={{backgroundColor:'rgba(0,0,0,0.3)', height:380, width:width, top:100, left:0, position:'absolute'}}>
       <ScrollView style={{flex:1}} horizontal = {true}>
-      <View style={{backgroundColor:'rgba(255,255,255,0.16)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
+      <View style={{backgroundColor:'rgba(0,0,0,0.26)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
       <Image source={messi} resizeMode='contain' style={{flex:1, height:null, width:null}}/>
       </View>
-      <View style={{backgroundColor:'rgba(255,255,255,0.26)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
+      <View style={{backgroundColor:'rgba(0,0,0,0.36)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
       <Image source={neyman} resizeMode='contain' style={{flex:1, height:null, width:null}}/>
       </View>
-      <View style={{backgroundColor:'rgba(255,255,255,0.36)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
+      <View style={{backgroundColor:'rgba(0,0,0,0.46)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
       <Image source={gerad} resizeMode='contain' style={{flex:1, height:null, width:null}}/>
       </View>
-      <View style={{backgroundColor:'rgba(255,255,255,0.26)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
+      <View style={{backgroundColor:'rgba(0,0,0,0.36)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
       <Image source={arda} resizeMode='contain' style={{flex:1, height:null, width:null}}/>
       </View>
-      <View style={{backgroundColor:'rgba(255,255,255,0.16)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
+      <View style={{backgroundColor:'rgba(0,0,0,0.26)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
       <Image source={xavi} resizeMode='contain' style={{flex:1, height:null, width:null}}/>
       </View>
-      <View style={{backgroundColor:'rgba(255,255,255,0.26)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
+      <View style={{backgroundColor:'rgba(0,0,0,0.36)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
       <Image source={samuel} resizeMode='contain' style={{flex:1, height:null, width:null}}/>
       </View>
-      <View style={{backgroundColor:'rgba(255,255,255,0.36)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
+      <View style={{backgroundColor:'rgba(0,0,0,0.46)', transform: [{skewX: '-8deg'}], height:380, marginRight:5, width:180}}>
       <Image source={lucho} resizeMode='contain' style={{flex:1, height:null, width:null}}/>
       </View>
       </ScrollView>
@@ -87,32 +102,35 @@ export default class News extends Component {
   }
 
   navVew(){
-    return(
-    <View>
-      <View style={styles.menu}>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.subMenu}>
-        <Icon name="chevron-right" size={17} color='#d3d3d3' />
-        <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>FEED</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.subMenu}>
-        <Icon name="chevron-right" size={17} color='#d9991d' />
-        <Text style={{color:'#d9991d', fontWeight:'700', fontSize:11}}>STATISTICS</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.subMenu}>
-        <Icon name="chevron-right" size={17} color='#d3d3d3' />
-        <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>ABOUT</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.subMenu}>
-        <Icon name="chevron-right" size={17} color='#d3d3d3' />
-        <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>GALLERY</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TOUR & MUSEUM</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TICKETS</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>SHOP</Text></TouchableOpacity>
-      </View>
-      </View>
-      
-      )
+    if(this.state.displayNav){
+        return(
+        <View >
+          <View style={styles.menu}>
+          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'home'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'news'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'players'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'team'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.subMenu}>
+            <Icon name="chevron-right" size={17} color='#d3d3d3' />
+            <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>FEED</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.subMenu}>
+            <Icon name="chevron-right" size={17} color='#d9991d' />
+            <Text style={{color:'#d9991d', fontWeight:'700', fontSize:11}}>STATISTICS</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.subMenu}>
+            <Icon name="chevron-right" size={17} color='#d3d3d3' />
+            <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>ABOUT</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.subMenu}>
+            <Icon name="chevron-right" size={17} color='#d3d3d3' />
+            <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>GALLERY</Text></TouchableOpacity>
+          <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TOUR & MUSEUM</Text></TouchableOpacity>
+          <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TICKETS</Text></TouchableOpacity>
+          <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>SHOP</Text></TouchableOpacity>
+          </View>
+          </View>
+          
+          )}else{
+  return(<View />)
+}
   }
 
  
@@ -121,7 +139,8 @@ export default class News extends Component {
      
       <Image source={require('../images/locker.png')} resizeMode='stretch' style={styles.container}>
       <Image source={require('../images/overlay.png')} resizeMode='stretch' style={styles.container}>
-      <Nav name="TEAM"/>
+      <Nav onPress = {() => this.onPress()} name="TEAM"/>
+      {this.navVew()}
       <View style={{flex:1}}>
       <View style={{flex:3}}>
       <View style={{flex:1, justifyContent:'center', flexDirection:'row'}}>
@@ -194,8 +213,8 @@ block:{
 },
 subTitle:{
   color:"#c6832a",
-  fontWeight:'600',
-  fontSize:15
+  fontWeight:'700',
+  fontSize:13
 
 },
 mainVal:{
@@ -224,7 +243,8 @@ subMenu:{
   transform: [{skewX: '-25deg'}],
 },
 menu:{
-  flex:5,
+  height:height,
+  width:width,
   justifyContent:'center'
 }
 }

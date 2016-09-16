@@ -13,6 +13,7 @@ import {
   StyleSheet,
   Text,
   Image,
+  LayoutAnimation,
   Dimensions,
   TouchableOpacity,
   View
@@ -257,13 +258,26 @@ export default class Home extends Component {
     super(props)
 
     this.state = {
-      currentPlayer : players[i]
+      currentPlayer : players[i],
+      displayNav: true
     }
+  }
+    onPress(){
+     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+    if(this.state.displayNav){
+        this.setState({
+         displayNav: false
+        })}else{
+          this.setState({
+         displayNav: true
+        })
+        }
   }
   highlights(x){
 
   }
   next(){
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
     if(i < 8){
       i = i+1;
       this.setState({
@@ -272,6 +286,7 @@ export default class Home extends Component {
     }
   }
   prev(){
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
     if(i > 0){
       i = i-1;
       this.setState({
@@ -279,12 +294,36 @@ export default class Home extends Component {
       })
     }
   }
+
+    navVew(){
+    if(this.state.displayNav){
+        return(
+        <View >
+          <View style={styles.menu}>
+          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'home'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'news'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'players'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'team'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
+          
+          <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TOUR & MUSEUM</Text></TouchableOpacity>
+          <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TICKETS</Text></TouchableOpacity>
+          <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>SHOP</Text></TouchableOpacity>
+          </View>
+          </View>
+          
+          )}else{
+  return(<View />)
+}
+  }
+
   render() {
     return (
       <Image source={require('../images/field.png')} resizeMode='stretch' style={styles.container}>
             <Image source ={this.state.currentPlayer.image} resizeMode='stretch' style={styles.container}>
       <Image source={require('../images/overlay2.png')} resizeMode='stretch' style={styles.container}>
-      <Nav name= {this.state.currentPlayer.name.toUpperCase()} />
+
+      <Nav onPress= {() => this.onPress()} name= {this.state.currentPlayer.name.toUpperCase()} />
+            {this.navVew()}
       <View style={{flex:1, justifyContent:'center', marginLeft:60}}>
         <View style={{flexDirection:'row',width:300, margin:5, marginLeft:-20}}>
       <View style={{flex:1, justifyContent:'center'}}>
@@ -382,7 +421,8 @@ news:{
   flex:3
 },
 menu:{
-  flex:4,
+  height:height-60,
+  width:width,
   justifyContent:'center'
 }
 }
