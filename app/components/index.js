@@ -62,7 +62,10 @@ export default class Index extends Component {
      style={{flex: 1}}
      ref={'NAV'}
      initialRoute={{id: 'team', name: 'team'}}
+     configureScene={(route, routeStack) =>
+    Navigator.SceneConfigs.VerticalUpSwipeJump}
      renderScene={this.renderScene.bind(this)}/>
+
         </View>
     )
 }

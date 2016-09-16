@@ -300,10 +300,10 @@ export default class Home extends Component {
         return(
         <View >
           <View style={styles.menu}>
-          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'home'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'news'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'players'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'team'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'home'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'news'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'players'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'team'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
           
           <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TOUR & MUSEUM</Text></TouchableOpacity>
           <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TICKETS</Text></TouchableOpacity>

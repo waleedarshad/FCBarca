@@ -16,6 +16,7 @@ import {
   ScrollView,
   ListView,
   Text,
+  LayoutAnimation,
   Image,
   Dimensions,
   TouchableOpacity,
@@ -191,15 +192,17 @@ export default class News extends Component {
 
     this.state = {
       dataSource: ds.cloneWithRows(data),
+      displayNav:true
     }
   }
 
   navVew(){
+    if(this.state.displayNav){
     return(
     <View>
       <View style={styles.menu}>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
+      <TouchableOpacity onPress ={() => this.props.navigator.push({id:'home'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
+      <TouchableOpacity onPress ={() => this.props.navigator.push({id:'news'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
         <TouchableOpacity style={styles.subMenu}>
         <Icon name="chevron-right" size={17} color='#d3d3d3' />
         <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>RESULTS</Text></TouchableOpacity>
@@ -212,17 +215,30 @@ export default class News extends Component {
         <TouchableOpacity style={styles.subMenu}>
         <Icon name="chevron-right" size={17} color='#d3d3d3' />
         <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>FORMATIONS</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
-      <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
+      <TouchableOpacity onPress ={() => this.props.navigator.push({id:'players'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
+      <TouchableOpacity onPress ={() => this.props.navigator.push({id:'team'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TOUR & MUSEUM</Text></TouchableOpacity>
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>TICKETS</Text></TouchableOpacity>
       <TouchableOpacity style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>SHOP</Text></TouchableOpacity>
       </View>
       </View>
       
-      )
+      )}else{
+    return(<View />)
+}
   }
 
+onPress(){
+     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+    if(this.state.displayNav){
+        this.setState({
+         displayNav: false
+        })}else{
+          this.setState({
+         displayNav: true
+        })
+        }
+  }
   eachbox(x){
 
     if(x.type == "box2"){
@@ -288,7 +304,8 @@ export default class News extends Component {
      
       <Image source={require('../images/locker.png')} resizeMode='stretch' style={styles.container}>
       <Image source={require('../images/overlay.png')} resizeMode='stretch' style={styles.container}>
-      <Nav name="NEWS"/>
+      <Nav name="NEWS" onPress={() => this.onPress()}/>
+      {this.navVew()}
       <View style={{height:height, width:2, backgroundColor:'#d9991d', position:'absolute', left:width/2 }}/>
       {this.calendar()}
       </Image>
@@ -318,7 +335,8 @@ subMenu:{
   transform: [{skewX: '-25deg'}],
 },
 menu:{
-  flex:5,
+  height:height,
+  width:width,
   justifyContent:'center'
 }
 }

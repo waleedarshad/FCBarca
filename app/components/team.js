@@ -106,10 +106,10 @@ export default class News extends Component {
         return(
         <View >
           <View style={styles.menu}>
-          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'home'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'news'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'players'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigator.replace({id:'team'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'home'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:13}}>HOME</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'news'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'800', fontSize:13}}>NEWS</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'players'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#fff', fontWeight:'700', fontSize:12}}>PLAYERS</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'team'})} style={{margin:5, marginLeft:50}}><Text style={{color:'#d9991d', fontWeight:'700', fontSize:12}}>TEAM</Text></TouchableOpacity>
           <TouchableOpacity style={styles.subMenu}>
             <Icon name="chevron-right" size={17} color='#d3d3d3' />
             <Text style={{color:'#d3d3d3', fontWeight:'700', fontSize:11}}>FEED</Text></TouchableOpacity>
@@ -137,15 +137,15 @@ export default class News extends Component {
   render() {
     return (
      
-      <Image source={require('../images/locker.png')} resizeMode='stretch' style={styles.container}>
+      <Image source={require('../images/field.png')} resizeMode='stretch' style={styles.container}>
       <Image source={require('../images/overlay.png')} resizeMode='stretch' style={styles.container}>
       <Nav onPress = {() => this.onPress()} name="TEAM"/>
       {this.navVew()}
       <View style={{flex:1}}>
       <View style={{flex:3}}>
       <View style={{flex:1, justifyContent:'center', flexDirection:'row'}}>
-      <Text style={{color:'#d9991d', fontWeight:'800', marginLeft:60, fontSize:80}}>{data.goals}</Text>
-      <Text style={{color:'#d9991d', fontWeight:'800', fontSize:16, marginTop:20}}>GOALS</Text>
+      <Text style={{color:'rgba(255,255,255,0.6)', fontWeight:'800', margin:5, marginLeft:60, fontSize:60}}>{data.goals}</Text>
+      <Text style={{color:'#888', fontWeight:'800', fontSize:16, marginTop:20}}>GOALS</Text>
       </View>
       <View style={{flex:2, alignItems:'center'}}>
       <Text style={{color:'#fff', fontSize:16, fontWeight:'500'}}>GOALS SCORED THIS SEASON</Text>
